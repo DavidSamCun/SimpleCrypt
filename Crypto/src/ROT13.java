@@ -7,24 +7,16 @@ public class ROT13  {
     private static int shiftDif;
 
     ROT13(Character cs, Character cf) {
-
         shiftDif = cf - cs;
-
     }
 
     ROT13() {
     }
 
-
     public String crypt(String text) throws UnsupportedOperationException {
-        String output = "";
 
 
-        for(char a : text.toCharArray()){
-            output += (char)(a + 1);
-        }
-
-        return output;
+        return encrypt(text);
     }
 
     public String encrypt(String input) {
@@ -32,18 +24,21 @@ public class ROT13  {
         String output = "";
 
         for(char letter : input.toCharArray()){
+
             if (letter >= 97 && letter <= 122){
                 letter += shiftDif;
                 if(letter > 122){
                     letter -= 26;
                 }
             }
+
             if (letter >= 65 && letter <= 90){
                 letter += shiftDif;
                 if(letter > 90){
                     letter-=26;
                 }
             }
+
             output += (char)(letter);
         }
 
@@ -54,15 +49,23 @@ public class ROT13  {
     }
 
     public String decrypt(String input) {
-        String output = "";
 
+        int charFirstVal = input.charAt(0);
+        int charLastVal = input.charAt(input.length()-1);
+        int range = charLastVal - charFirstVal;
+
+        String output = "";
         for(char letter : input.toCharArray()){
+
             if (letter >= 97 && letter <= 122){
                 letter -= shiftDif;
+
                 if(letter < 97){
                     letter += 26;
                 }
+
             }
+
             if (letter >= 65 && letter <= 90){
                 letter -= shiftDif;
                 if(letter < 65){
@@ -70,6 +73,7 @@ public class ROT13  {
                 }
             }
             output += (char)(letter);
+
         }
 
         return output;
@@ -77,25 +81,18 @@ public class ROT13  {
 
     public static String rotate(String input, Character c) {
 
-        shiftDif = c - 'A';
-
-        int shift = c - 'A';
+        int charFirstVal = input.charAt(0);
+        int charLastVal = input.charAt(input.length()-1);
+        int range = input.length();
+        int shift = c - charFirstVal;
 
         String output = "";
 
         for(char letter : input.toCharArray()){
-            if (letter >= 97 && letter <= 122){
-                letter += shift;
-                if(letter > 122){
-                    letter -= 26;
+            letter += shift;
+                if(letter > charLastVal){
+                    letter -= range;
                 }
-            }
-            if (letter >= 65 && letter <= 90){
-                letter += shift;
-                if(letter > 90){
-                    letter-=26;
-                }
-            }
             output += (char)(letter);
         }
 

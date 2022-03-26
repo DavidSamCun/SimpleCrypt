@@ -84,6 +84,7 @@ public class ROT13Test {
 
         String Q1 = "Why did the chicken cross the road?";
         System.out.println(Q1);
+        String hold = cipher.crypt(Q1);
 
         // When
         String actual = cipher.crypt(cipher.crypt(Q1));
@@ -97,20 +98,6 @@ public class ROT13Test {
 
 
     //Test Methods
-    @Test
-    public void myCryptTest(){
-
-        //Given
-        String input = "abcd";
-        ROT13 test = new ROT13();
-
-        //When
-        String expected = "bcde";
-
-        //Then
-        Assert.assertEquals(test.crypt(input), expected);
-
-    }
 
 
     @Test
