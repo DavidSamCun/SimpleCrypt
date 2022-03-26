@@ -1,3 +1,4 @@
+import org.junit.Assert;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -28,6 +29,7 @@ public class ROT13Test {
         // When
         ROT13 cipher = new ROT13();
         String actual = cipher.rotate(s1, 'D');
+        System.out.println(actual);
 
         // Then
         assertTrue(actual.equals(s2));
@@ -63,6 +65,7 @@ public class ROT13Test {
         String actual = cipher.encrypt(Q1);
         System.out.println(Q1);
         System.out.println(A1);
+        System.out.println(actual);
         // Then
         assertTrue(actual.equals(A1));
 
@@ -70,6 +73,7 @@ public class ROT13Test {
         String actual2 = cipher.decrypt(Q2);
         System.out.println(Q2);
         System.out.println(A2);
+        System.out.println(actual2);
         // Then
         assertTrue(actual2.equals(A2));
     }
@@ -86,6 +90,78 @@ public class ROT13Test {
         System.out.println(actual);
         // Then
         assertTrue(actual.equals(Q1));
+    }
+
+
+
+
+
+    //Test Methods
+    @Test
+    public void myCryptTest(){
+
+        //Given
+        String input = "abcd";
+        ROT13 test = new ROT13();
+
+        //When
+        String expected = "bcde";
+
+        //Then
+        Assert.assertEquals(test.crypt(input), expected);
+
+    }
+
+
+    @Test
+    public void reWriteTest1(){
+
+        //Given
+        String test = "abcd";
+        int shift = 0;
+        ROT13 rotTest = new ROT13();
+
+
+        //When
+        String output = rotTest.reWriteCode(test, shift);
+        String expected = "abcd";
+
+        assertTrue(output.equals(expected));
+
+    }
+
+    @Test
+    public void reWriteTest2(){
+
+        //Given
+        String test = "ABcd";
+        int shift = 1;
+        ROT13 rotTest = new ROT13();
+
+
+        //When
+        String output = rotTest.reWriteCode(test, shift);
+        String expected = "BCde";
+
+        assertTrue(output.equals(expected));
+
+    }
+
+    @Test
+    public void reWriteTest3(){
+
+        //Given
+        String test = "ab cd";
+        int shift = 1;
+        ROT13 rotTest = new ROT13();
+
+
+        //When
+        String output = rotTest.reWriteCode(test, shift);
+        String expected = "bc de";
+
+        assertTrue(output.equals(expected));
+
     }
 
 }
