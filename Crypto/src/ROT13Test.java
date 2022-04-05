@@ -151,4 +151,39 @@ public class ROT13Test {
 
     }
 
+    @Test
+    public void createFileTest(){
+        ROT13 rotTest = new ROT13();
+        rotTest.createFile();
+
+    }
+
+    @Test
+    public void writeFileTest(){
+        ROT13 rotTest = new ROT13();
+        rotTest.writeFile();
+        rotTest.readFile();
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

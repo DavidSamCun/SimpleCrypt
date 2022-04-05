@@ -1,3 +1,6 @@
+import java.io.*;
+import java.util.Scanner;
+
 import static java.lang.Character.isLowerCase;
 import static java.lang.Character.isUpperCase;
 import static java.lang.Character.toLowerCase;
@@ -100,7 +103,10 @@ public class ROT13  {
         //lower case letters a = 97, z = 122
         //upper case letters A = 65, Z = 90
 
-    }
+    } //Need to redo because it only rotates sequential alphabets, not words.
+
+
+    //Extra crap for testing
 
     public int getShiftDif(){
         return shiftDif;
@@ -146,6 +152,70 @@ public class ROT13  {
         //upper case letters A = 65, Z = 90
 
         return outputTest;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    //For myself
+
+    public void createFile(){
+        try {
+            File myObj = new File("C:\\Users\\spart\\Documents\\Dev Folder\\SimpleCrypt\\filename.txt");
+            if (myObj.createNewFile()) {
+                System.out.println("File created: " + myObj.getName());
+            } else {
+                System.out.println("File already exists.");
+            }
+        } catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
+    }
+
+    public void writeFile(){
+        try {
+            FileWriter myWriter = new FileWriter("filename.txt");
+            myWriter.write("Cheeseburgers\nFiles in Java might be tricky, but it is fun enough!");
+            myWriter.close();
+            System.out.println("Successfully wrote to the file.");
+        } catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
+
+    }
+
+    public void readFile() {
+        String data = "";
+        try {
+            File myObj = new File("filename.txt");
+            Scanner myReader = new Scanner(myObj);
+            while (myReader.hasNextLine()) {
+                data+= myReader.nextLine()+"\n";
+                //System.out.println(data);
+            }
+            myReader.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
+        System.out.println(data);
     }
 
 }
