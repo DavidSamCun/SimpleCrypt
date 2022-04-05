@@ -105,7 +105,64 @@ public class ROT13  {
 
     } //Need to redo because it only rotates sequential alphabets, not words.
 
+    public void encryptFile(String inputFile, String outputFile) {
 
+        //Read and encrypt
+
+        String encryptThis = readFile(inputFile);
+        String encrypted = encrypt(encryptThis);
+
+        //Create and output
+        createFile(outputFile);
+        writeFile(outputFile, encrypted);
+
+        System.out.println("Successfully Encrypted");
+    }
+
+    public String readFile(String filename) {
+        String data = "";
+        try {
+            File myObj = new File(filename);
+            Scanner myReader = new Scanner(myObj);
+            while (myReader.hasNextLine()) {
+                data+= myReader.nextLine()+"\n";
+                //System.out.println(data);
+            }
+            myReader.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
+        System.out.println(data);
+        return data;
+    }
+
+    public void createFile(String filename){
+        try {
+            File myObj = new File("C:\\Users\\spart\\Documents\\Dev Folder\\SimpleCrypt\\" + filename);
+            if (myObj.createNewFile()) {
+                System.out.println("File created: " + myObj.getName());
+            } else {
+                System.out.println("File already exists.");
+            }
+        } catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
+    }
+
+    public void writeFile(String outputfile, String encrypted){
+        try {
+            FileWriter myWriter = new FileWriter(outputfile);
+            myWriter.write(encrypted);
+            myWriter.close();
+            System.out.println("Successfully wrote to the file.");
+        } catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
+
+    }
     //Extra crap for testing
 
     public int getShiftDif(){
@@ -153,69 +210,7 @@ public class ROT13  {
 
         return outputTest;
     }
+    //Read Write Test
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    //For myself
-
-    public void createFile(){
-        try {
-            File myObj = new File("C:\\Users\\spart\\Documents\\Dev Folder\\SimpleCrypt\\filename.txt");
-            if (myObj.createNewFile()) {
-                System.out.println("File created: " + myObj.getName());
-            } else {
-                System.out.println("File already exists.");
-            }
-        } catch (IOException e) {
-            System.out.println("An error occurred.");
-            e.printStackTrace();
-        }
-    }
-
-    public void writeFile(){
-        try {
-            FileWriter myWriter = new FileWriter("filename.txt");
-            myWriter.write("Cheeseburgers\nFiles in Java might be tricky, but it is fun enough!");
-            myWriter.close();
-            System.out.println("Successfully wrote to the file.");
-        } catch (IOException e) {
-            System.out.println("An error occurred.");
-            e.printStackTrace();
-        }
-
-    }
-
-    public void readFile() {
-        String data = "";
-        try {
-            File myObj = new File("filename.txt");
-            Scanner myReader = new Scanner(myObj);
-            while (myReader.hasNextLine()) {
-                data+= myReader.nextLine()+"\n";
-                //System.out.println(data);
-            }
-            myReader.close();
-        } catch (FileNotFoundException e) {
-            System.out.println("An error occurred.");
-            e.printStackTrace();
-        }
-        System.out.println(data);
-    }
 
 }
